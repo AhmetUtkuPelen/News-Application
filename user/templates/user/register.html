@@ -98,12 +98,13 @@
           Create and account
         </h1>
         <form
+          id="form"
           class="space-y-4 md:space-y-6"
           action="{% url 'login' %}"
           method="post"
         >
           {%csrf_token%}
-          <div>
+          <div class="register-div">
             <label
               for="username"
               class="block mb-2 text-sm font-medium text-stone-900 dark:text-white"
@@ -192,7 +193,7 @@
               >
               <input
                 type="confirm-password"
-                name="confirm-password"
+                name="repassword"
                 id="confirm-password"
                 placeholder="••••••••"
                 class="bg-stone-50 border border-stone-300 text-stone-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -200,29 +201,20 @@
               />
             </div>
           </div>
-          <div class="flex items-start">
-            <div class="flex items-center h-5">
-              <input
-                id="terms"
-                aria-describedby="terms"
-                type="checkbox"
-                class="w-4 h-4 border border-stone-300 rounded bg-stone-50 focus:ring-3 focus:ring-primary-300 dark:bg-stone-700 dark:border-stone-600 dark:focus:ring-primary-600 dark:ring-offset-stone-800"
-                required=""
-              />
-            </div>
-          </div>
           <button
-            type="submit"
+            onclick="rotateForm()"
             class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
           >
-            Create an account
+            Sonraki Aşama
           </button>
-          <p class="text-sm font-light text-stone-500 dark:text-stone-400">
-            Already have an account?
+          <p
+            class="text-center text-sm font-light text-stone-500 dark:text-stone-400"
+          >
+            Zaten hesabınız var mı?
             <a
-              href="#"
+              href="{% url 'login' %}"
               class="font-medium text-primary-600 hover:underline dark:text-primary-500"
-              >Login here</a
+              >Giriş Yapın</a
             >
           </p>
         </form>
@@ -230,4 +222,11 @@
     </div>
   </div>
 </section>
+<script>
+  const form = document.getElementById("form");
+  form.style.transition = ".3s ease-out";
+  function rotateForm() {
+    form.style.transform = "rotateY(180deg)";
+  }
+</script>
 {% endblock main-content %}
